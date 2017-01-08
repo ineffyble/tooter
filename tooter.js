@@ -49,8 +49,8 @@ function mastodonAppCreate(authHost) {
 
     var data = new FormData();
     var params = {
-        'client_name': 'TootShare',
-        'redirect_uris': 'chrome-extension://' + extension_id + '/tootshare-admin.html',
+        'client_name': 'Tooter',
+        'redirect_uris': 'chrome-extension://' + extension_id + '/tooter.html',
         'scopes': 'read write'
     };
     for (var p in params) {

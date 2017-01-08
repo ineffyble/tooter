@@ -72,7 +72,7 @@ function logIn(event) {
                     getCredentials(f);
                 } else {
                     errorStatus(
-                        'TootShare was denied permissions required to talk to Mastodon.'
+                        'Tooter was denied permissions required to talk to Mastodon.'
                         );
                 }
             });

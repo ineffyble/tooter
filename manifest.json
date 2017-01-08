@@ -1,7 +1,7 @@
 {
 
   "manifest_version": 2,
-  "name": "TootShare",
+  "name": "Tooter",
   "version": "0.1",
   "description": "Add 'Toot' and 'Share to Mastodon' buttons to the web", 
 
@@ -15,14 +15,14 @@
   "content_scripts": [
     {
       "matches": ["*://*.twitter.com/*"],
-      "js": ["tootshare.js", "content/twitter.js"],
+      "js": ["tooter.js", "content/twitter.js"],
       "run_at": "document_end",
       "all_frames": true
     }
   ],
 
   "options_ui": {
-    "page": "tootshare-admin.html"
+    "page": "tooter-admin.html"
   }
 
 }
