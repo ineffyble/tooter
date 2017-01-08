@@ -1,0 +1,35 @@
+{
+
+  "manifest_version": 2,
+  "name": "TootShare",
+  "version": "0.1",
+  "description": "Add 'Toot' and 'Share to Mastodon' buttons to the web", 
+
+  "permissions": ["storage"],
+
+  "optional_permissions": [
+    "http://*/",
+    "https://*/"
+  ],
+
+  "content_scripts": [
+    {
+      "matches": ["*://*.twitter.com/*"],
+      "js": ["tootshare.js"],
+      "run_at": "document_end",
+      "all_frames": true
+    }
+  ],
+
+  "options_ui": {
+    "page": "tootshare-admin.html"
+  }
+
+  // "icons": {
+  //   "16": "icon16.png",
+  //   "48": "icon48.png",
+  //   "64": "icon64.png",
+  //   "128": "icon128.png"
+  // }
+
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>title</title>
+    <script src="tootshare.js"></script>
+    <script src="tootshare-admin.js"></script>
+  </head>
+  <body>
+      <div id="header">
+        <h1>TootShare</h1>
+        <h3>Adding toot options to the web</h3>
+      </div>
+      <div id="status">
+      </div>
+      <div id="login" style="display: none;">
+        <form class="form-horizontal" id="loginform">
+          <fieldset>
+
+          <legend>Log in to Mastodon</legend>
+
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="email">Email</label>  
+            <div class="col-md-4">
+            <input id="email" name="email" type="text" placeholder="star.butterfly@mewni.gov" class="form-control input-md" required="">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="password">Password</label>
+            <div class="col-md-4">
+              <input id="password" name="password" type="password" placeholder="narwhalblast" class="form-control input-md" required="">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="domain">Mastodon Domain</label>
+            <div class="col-md-4">
+              <div class="input-group">
+                <span class="input-group-addon">https://</span>
+                <input id="domain" name="domain" class="form-control" placeholder="mastodon.social" type="text" required="">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="secure">Secure (HTTPS)</label>
+            <div class="col-md-4">
+              <label class="checkbox-inline" for="secure-0">
+                <input type="checkbox" name="secure" id="secure-0" value="1">
+                Yes
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-md-8">
+              <button id="login-button" name="login-button" class="btn btn-primary" type="submit">Log in</button>
+            </div>
+          </div>
+
+          </fieldset>
+        </form>
+      </div>
+  </body>
+</html>
