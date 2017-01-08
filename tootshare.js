@@ -14,17 +14,26 @@ function mastodonFetch(request) {
         .then(checkStatus);
 }
 
-function mastodonRequest(method, endpoint, data) {
+function mastodonRequest(method, endpoint, params) {
+    var data = false;
     var protocol = tootConfig.secure ? 'https' : 'http';
     var url = protocol + '://' + tootConfig.domain + TOOTAPI + endpoint;
 
     var headers = new Headers();
     headers.set('Authorization', 'Bearer ' + tootConfig.access_token);
 
+    if (params) {
+        data = new FormData();
+        for (var p in params) {
+            data.append(p, params[p]);
+        }
+    }
+
     var request = new Request(url, {
         mode: 'cors',
         method: method,
         headers: headers,
+        body: data
     });
 
     return mastodonFetch(request)
@@ -70,7 +79,8 @@ function mastodonLogIn(client_id, client_secret, email, password) {
         'client_secret': client_secret,
         'grant_type': 'password',
         'username': email,
-        'password': password
+        'password': password,
+        'scope': 'read write'
     };
     for (var p in params) {
         data.append(p, params[p]);
@@ -88,5 +98,20 @@ function mastodonLogIn(client_id, client_secret, email, password) {
         })
         .catch(function(error) {
             return error;
+        });
+}
+
+
+function mastonValidateCredentials() {
+    return mastodonRequest('GET', 'accounts/verify_credentials', false)
+        .then(function(re) {
+            return re;
+        });
+}
+
+function mastodonPost(text) {
+    return mastodonRequest('POST', 'statuses', {'status': text})
+        .then(function(re) {
+            return re;
         });
 }
