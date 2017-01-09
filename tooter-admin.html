@@ -4,17 +4,32 @@
     <meta charset="UTF-8">
     <title>title</title>
     <script src="tooter.js"></script>
-    <script src="tooter.js"></script>
+    <script src="tooter-admin.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+      .container {
+        padding-bottom: 20px;
+      }
+    </style>
   </head>
   <body>
-      <div id="header">
-        <h1>Tooter</h1>
-        <h3>Adding toot options to the web</h3>
+    <div class="container">
+      <div class="page-header">
+        <h1>Tooter <small>Toot buttons for all</small></h1>
       </div>
-      <div id="status">
+      <div id="alerts">
       </div>
-      <div id="login" style="display: none;">
-        <form class="form-horizontal" id="loginform">
+      <div id="logged-in" style="display: none;">
+        <div class="well well-sm">
+          <p>You are currently logged in as <span id="username">@StarButterfly</span> on <span id="domain">mewni.gov</span>.</p>
+          <button id="logout-button" class="btn btn-primary">Log out</button>
+        </div>
+      </div>
+      <div id="not-logged-in" style="display: none;">
+        <div class="well well-sm">
+          <p>You are not logged in.</p>
+        </div>
+        <form class="form-horizontal" id="login-form">
           <fieldset>
 
           <legend>Log in to Mastodon</legend>
@@ -37,19 +52,12 @@
             <label class="col-md-4 control-label" for="domain">Mastodon Domain</label>
             <div class="col-md-4">
               <div class="input-group">
-                <span class="input-group-addon">https://</span>
-                <input id="domain" name="domain" class="form-control" placeholder="mastodon.social" type="text" required="">
+              <select class="input-group-addon form-control" id="secure" name="secure" style="width: auto;">
+                <option value="1">https://</option>
+                <option value="0">http://</option>
+              </select>
+              <input id="domain" name="domain" class="form-control" placeholder="mastodon.social" type="text" required="" style="width: auto;">
               </div>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="secure">Secure (HTTPS)</label>
-            <div class="col-md-4">
-              <label class="checkbox-inline" for="secure-0">
-                <input type="checkbox" name="secure" id="secure-0" value="1">
-                Yes
-              </label>
             </div>
           </div>
 
@@ -61,6 +69,7 @@
 
           </fieldset>
         </form>
+      </div>
       </div>
   </body>
 </html>

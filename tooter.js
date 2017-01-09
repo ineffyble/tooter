@@ -42,8 +42,8 @@ function mastodonRequest(method, endpoint, params) {
         });
 }
 
-function mastodonAppCreate(authHost) {
-    var protocol = tootConfig.secure ? 'https' : 'http';
+function mastodonAppCreate() {
+    var protocol = (tootConfig.secure == 1 ? 'https' : 'http');
     var url = protocol + '://' + tootConfig.domain + TOOTAPI + 'apps';
     var extension_id = chrome.runtime.id;
 

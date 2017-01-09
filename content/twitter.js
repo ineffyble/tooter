@@ -1,6 +1,6 @@
 var tootConfig;
 
-chrome.storage.local.get("settings", function(res) {
+chrome.storage.local.get('settings', function(res) {
     tootConfig = res.settings;
     if (tootConfig && tootConfig.access_token) {
         run();
@@ -16,6 +16,11 @@ function run() {
     }
 }
 
+function errorStatus(text) {
+    var html = `<p id="post-error" role="alert" class="error notice noarrow">${text}</p>`;
+    document.querySelector('#bd').innerHTML = html;
+}
+
 function tootClicked(event) {
     event.preventDefault();
     var tootText = document.querySelector('#status').value;
@@ -24,10 +29,11 @@ function tootClicked(event) {
             if (t.url) {
                 window.location.href = t.url;
             } else {
-                var error = document.createElement('div');
-                error.innerHTML = '<p id="post-error" role="alert" class="error notice noarrow">An error occured.</p>';
-                document.querySelector('#bd').appendChild(error);
+                errorStatus('An error occurred');
             }
+        })
+        .catch(function(e) {
+            errorStatus(`An error occurred: ${e}`);
         });
 }
 
@@ -40,10 +46,11 @@ function tweetTootClicked(event) {
             if (t.url) {
                 tweetButton.click();
             } else {
-                var error = document.createElement('div');
-                error.innerHTML = '<p id="post-error" role="alert" class="error notice noarrow">An error occured.</p>';
-                document.querySelector('#bd').appendChild(error);
+                errorStatus('An error occurred.');
             }
+        })
+        .catch(function(e) {
+            errorStatus(`An error occurred: ${e}`);    
         });
 }
 

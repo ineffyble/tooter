@@ -5,6 +5,12 @@
   "version": "0.1",
   "description": "Add 'Toot' and 'Share to Mastodon' buttons to the web", 
 
+  "icons": {
+    "16": "img/mastodon16.png",
+    "48": "img/mastodon48.png",
+    "128": "img/mastodon128.png"
+  },
+
   "permissions": ["storage", "tabs"],
 
   "optional_permissions": [
