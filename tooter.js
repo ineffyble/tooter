@@ -22,19 +22,23 @@ function mastodonRequest(method, endpoint, params) {
     var headers = new Headers();
     headers.set('Authorization', 'Bearer ' + tootConfig.access_token);
 
+    var rq = {
+        mode: 'cors',
+        method: method,
+        headers: headers,
+    };
+
     if (params) {
         data = new FormData();
         for (var p in params) {
             data.append(p, params[p]);
         }
+        rq.body = data;
     }
 
-    var request = new Request(url, {
-        mode: 'cors',
-        method: method,
-        headers: headers,
-        body: data
-    });
+    var request = new Request(url, rq);
+
+    console.log(request);
 
     return mastodonFetch(request)
         .then(function(responseObj) {

@@ -55,7 +55,21 @@ function tweetTootClicked(event) {
 }
 
 function addToIntentForm() {
+    addIntentButtonStyle();
     var submitFields = document.querySelector('fieldset.submit');
+    var tootButton = newIntentButton('toot', 'Toot');
+    submitFields.appendChild(tootButton);
+    tootButton.addEventListener('click', tootClicked);
+    if (document.body.classList.contains('logged-in')) {
+        // If not logged in, don't offer Tweet and Toot,
+        // since they will have that option after logging in
+        var tweetTootButton = newIntentButton('tweettoot', 'Tweet and Toot');
+        submitFields.appendChild(tweetTootButton);
+        tweetTootButton.addEventListener('click', tweetTootClicked);
+    }
+}
+
+function addIntentButtonStyle() {
     var style = document.createElement('style');
     style.innerHTML = `
     .button.toot.selected { 
@@ -67,18 +81,13 @@ function addToIntentForm() {
             border-color: #454b5e;
             background: linear-gradient(90deg, #1da1f2 0%, #1da1f2 50%, #454b5e 50%, #454b5e 100%)
     }`;
-    submitFields.appendChild(style);
-    var tootButton = document.createElement('input');
-    tootButton.setAttribute('class', 'button selected toot');
-    tootButton.setAttribute('type', 'submit');
-    tootButton.setAttribute('value', 'Toot');
-    submitFields.appendChild(tootButton);
-    var tweetTootButton = document.createElement('input');
-    tweetTootButton.setAttribute('class', 'button selected tweettoot');
-    tweetTootButton.setAttribute('type', 'submit');
-    tweetTootButton.setAttribute('value', 'Tweet and Toot');
-    submitFields.appendChild(tweetTootButton);
-    tootButton.addEventListener('click', tootClicked);
-    tweetTootButton.addEventListener('click', tweetTootClicked);
-    tootButton.addEventListener();
+    document.head.appendChild(style);
+}
+
+function newIntentButton(classes, label) {
+    var newButton = document.createElement('input');
+    newButton.setAttribute('class', 'button selected ' + classes);
+    newButton.setAttribute('type', 'submit');
+    newButton.setAttribute('value', label);
+    return newButton;
 }

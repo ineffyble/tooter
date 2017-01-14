@@ -2,7 +2,7 @@
 
   "manifest_version": 2,
   "name": "Tooter",
-  "version": "0.1",
+  "version": "0.2",
   "description": "Add 'Toot' and 'Share to Mastodon' buttons to the web", 
 
   "icons": {
@@ -10,13 +10,6 @@
     "48": "img/mastodon48.png",
     "128": "img/mastodon128.png"
   },
-
-  "permissions": ["storage", "tabs"],
-
-  "optional_permissions": [
-    "http://*/",
-    "https://*/"
-  ],
 
   "content_scripts": [
     {
@@ -29,6 +22,10 @@
 
   "options_ui": {
     "page": "tooter-admin.html"
-  }
+  },
+
+  "web_accessible_resources": [
+    "img/*"
+  ]
 
 }

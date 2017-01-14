@@ -52,23 +52,28 @@ function logIn(event) {
 
     var host = (f.secure.value ? 'https' : 'http') + '://' + f.domain.value + '/*';
 
-    chrome.permissions.contains({ origins: [host] }, function(result) {
-        if (result) {
-            getCredentials(f);
-        } else {
-            chrome.permissions.request({
-                origins: [host]
-            }, function(granted) {
-                if (granted) {
-                    getCredentials(f);
-                } else {
-                    errorStatus(
-                        `Tooter was denied permissions required to talk to the Mastodon instance at ${host}`
-                        );
-                }
-            });
-        }
-    });
+    if (chrome.permissions) { // Firefox doesn't support optional permissions,
+                              // so we request global permissions in the manifest.
+        chrome.permissions.contains({ origins: [host] }, function(result) {
+            if (result) {
+                getCredentials(f);
+            } else {
+                chrome.permissions.request({
+                    origins: [host]
+                }, function(granted) {
+                    if (granted) {
+                        getCredentials(f);
+                    } else {
+                        errorStatus(
+                            `Tooter was denied permissions required to talk to the Mastodon instance at ${host}`
+                            );
+                    }
+                });
+            }
+        });
+    } else {
+        getCredentials(f);
+    }
 }
 
 function getCredentials(f) {
