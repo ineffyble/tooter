@@ -16,7 +16,7 @@ function mastodonFetch(request) {
 
 function mastodonRequest(method, endpoint, params) {
     var data = false;
-    var protocol = tootConfig.secure ? 'https' : 'http';
+    var protocol = (tootConfig.secure == 1 ? 'https' : 'http');
     var url = protocol + '://' + tootConfig.domain + TOOTAPI + endpoint;
 
     var headers = new Headers();
@@ -54,6 +54,7 @@ function mastodonAppCreate() {
     var data = new FormData();
     var params = {
         'client_name': 'Tooter',
+        'website': 'https://github.com/ineffyble/tooter',
         'redirect_uris': 'chrome-extension://' + extension_id + '/tooter.html',
         'scopes': 'read write'
     };
@@ -74,7 +75,7 @@ function mastodonAppCreate() {
 }
 
 function mastodonLogIn(client_id, client_secret, email, password) {
-    var protocol = tootConfig.secure ? 'https' : 'http';
+    var protocol = (tootConfig.secure == 1 ? 'https' : 'http');
     var url = protocol + '://' + tootConfig.domain + '/oauth/token';
 
     var data = new FormData();
