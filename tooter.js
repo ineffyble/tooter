@@ -1,4 +1,4 @@
-var tootConfig, mastodonAppCreate, mastodonLogIn, mastodonGetAccessToken, mastodonValidateCredentials, mastodonPost;
+var tootConfig;
 
 const TOOTAPI = '/api/v1/';
 
@@ -117,7 +117,7 @@ function mastodonGetAccessToken(code) {
 }
 
 
-function mastonValidateCredentials() {
+function mastodonValidateCredentials() {
     return mastodonRequest('GET', 'accounts/verify_credentials', false)
         .then(function(re) {
             return re;
