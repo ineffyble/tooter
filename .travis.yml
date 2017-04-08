@@ -2,6 +2,8 @@ language: node_js
 node_js:
   - "7"
 before_install:
+  - stty cols 120
+  - export COLUMNS=120
   - npm install -g eslint
   - npm install -g addons-linter@0.17.0
 script:
