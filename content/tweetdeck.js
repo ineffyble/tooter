@@ -7,8 +7,8 @@ chrome.storage.local.get('settings', function(res) {
     if (tootConfig && tootConfig.access_token) {
         // Load Roboto font
         var fa = document.createElement('style');
-            fa.type = 'text/css';
-            fa.textContent = '@font-face { font-family: Roboto-Medium; src: url("'
+        fa.type = 'text/css';
+        fa.textContent = '@font-face { font-family: Roboto-Medium; src: url("'
                 + chrome.extension.getURL('fonts/Roboto-Medium.ttf')
                 + '"); }';
         document.head.appendChild(fa);
@@ -27,7 +27,7 @@ chrome.storage.local.get('settings', function(res) {
                 }
             }
         });
-    observer.observe(loader, { attributes: true });
+        observer.observe(loader, { attributes: true });
     }
 });
 
@@ -110,7 +110,7 @@ function tootClicked(event) {
                 if(!tweetTootButton.classList.contains('is-disabled'))
                     tweetTootButton.classList.add('is-disabled');
                 // Clear the text area
-                tootTextArea.value = "";
+                tootTextArea.value = '';
                 tootCharacterCounter = 500;
                 //TODO: add modal to display URL ?
                 //window.location.href = t.url;
@@ -137,7 +137,7 @@ function tweetTootClicked(event) {
                     tootButton.classList.add('is-disabled');
                 if(!tweetTootButton.classList.contains('is-disabled'))
                     tweetTootButton.classList.add('is-disabled');
-                    tootCharacterCounter = 500;
+                tootCharacterCounter = 500;
             } else {
                 errorStatus('An error occurred.');
             }

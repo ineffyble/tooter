@@ -17,8 +17,11 @@ function run() {
 }
 
 function errorStatus(text) {
-    var html = `<p id="post-error" role="alert" class="error notice noarrow">${text}</p>`;
-    document.querySelector('#bd').innerHTML = html;
+    var alert = document.createElement('p');
+    alert.className = 'error notice noarrow';
+    alert.id = 'post-error';
+    alert.innerText = text;
+    document.querySelector('#bd').appendChild(alert);
 }
 
 function tootClicked(event) {
@@ -50,7 +53,7 @@ function tweetTootClicked(event) {
             }
         })
         .catch(function(e) {
-            errorStatus(`An error occurred: ${e}`);    
+            errorStatus(`An error occurred: ${e}`);
         });
 }
 
@@ -72,9 +75,9 @@ function addToIntentForm() {
 function addIntentButtonStyle() {
     var style = document.createElement('style');
     style.innerHTML = `
-    .button.toot.selected { 
-            border-color: #454b5e; 
-            background-color: #454b5e; 
+    .button.toot.selected {
+            border-color: #454b5e;
+            background-color: #454b5e;
             margin-right: 3px;
     }
     .button.tweettoot.selected {

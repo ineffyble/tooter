@@ -28,8 +28,10 @@ function pendingLogin() {
 }
 
 function errorStatus(text) {
-    var html = `<div class="alert alert-danger" role="alert">${text}</div>`;
-    document.getElementById('alerts').innerHTML = html;
+    var alert = document.createElement('div');
+    alert.className = 'alert alert-danger';
+    alert.innerText = text;
+    document.getElementById('alerts').appendChild(alert);
 }
 
 function logOut() {
@@ -49,7 +51,7 @@ function fillForm() {
 }
 
 function refreshPage() {
-  location.reload();
+    location.reload();
 }
 
 function logIn(event) {
