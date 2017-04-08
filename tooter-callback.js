@@ -1,4 +1,4 @@
-var tootConfig;
+var tootConfig, mastodonRequest, mastodonGetAccessToken;
 
 function validCredentials() {
     return mastodonRequest('GET', 'accounts/verify_credentials', false)

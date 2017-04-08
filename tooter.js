@@ -1,3 +1,5 @@
+var tootConfig, mastodonAppCreate, mastodonLogIn, mastodonGetAccessToken, mastodonValidateCredentials, mastodonPost;
+
 const TOOTAPI = '/api/v1/';
 
 function mastodonFetch(request) {

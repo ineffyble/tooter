@@ -1,4 +1,4 @@
-var tootConfig;
+var tootConfig, mastodonPost;
 
 chrome.storage.local.get('settings', function(res) {
     tootConfig = res.settings;

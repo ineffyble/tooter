@@ -1,6 +1,6 @@
-var tootConfig;
+var tootConfig, mastodonPost;
 
-var submitContainer, tootTextArea, tootContainer, tootButton, tweetTootButton, tweetButton;
+var submitContainer, tootTextArea, tootContainer, tootButton, tweetTootButton, tweetButton, tootCharacterCounter;
 
 chrome.storage.local.get('settings', function(res) {
     tootConfig = res.settings;

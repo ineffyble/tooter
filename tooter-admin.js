@@ -1,4 +1,4 @@
-var tootConfig;
+var tootConfig, mastodonRequest, mastodonAppCreate, mastodonLogIn;
 
 function validCredentials() {
     return mastodonRequest('GET', 'accounts/verify_credentials', false)
@@ -94,7 +94,7 @@ function getCredentials(f) {
             tootConfig.client_secret = response.client_secret;
             chrome.storage.local.set({'settings': tootConfig});
             pendingLogin();
-            mastodonLogIn(response.client_id, response.client_secret)
+            mastodonLogIn(response.client_id, response.client_secret);
         } else {
             errorStatus(
                 'Unable to create a Mastodon app - check your domain settings.'
