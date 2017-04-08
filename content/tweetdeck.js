@@ -112,7 +112,6 @@ function tootClicked(event) {
                 // Clear the text area
                 tootTextArea.value = "";
                 tootCharacterCounter = 500;
-                console.log(t.url);
                 //TODO: add modal to display URL ?
                 //window.location.href = t.url;
             } else {

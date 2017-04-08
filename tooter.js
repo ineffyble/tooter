@@ -38,8 +38,6 @@ function mastodonRequest(method, endpoint, params) {
 
     var request = new Request(url, rq);
 
-    console.log(request);
-
     return mastodonFetch(request)
         .then(function(responseObj) {
             return responseObj.json();
