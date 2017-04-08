@@ -35,26 +35,12 @@
           <legend>Log in to Mastodon</legend>
 
           <div class="form-group">
-            <label class="col-md-4 control-label" for="email">Email</label>  
-            <div class="col-md-4">
-            <input id="email" name="email" type="text" placeholder="star.butterfly@mewni.gov" class="form-control input-md" required="">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="password">Password</label>
-            <div class="col-md-4">
-              <input id="password" name="password" type="password" placeholder="narwhalblast" class="form-control input-md" required="">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="domain">Mastodon Domain</label>
+            <label class="col-md-4 control-label" for="domain">Mastodon Instance</label>
             <div class="col-md-4">
               <div class="input-group">
+              <label for="secure"><small>Only secure (https) instances are supported at this time.</small></label>
               <select class="input-group-addon form-control" id="secure" name="secure" style="width: auto;">
                 <option value="1">https://</option>
-                <option value="0">http://</option>
               </select>
               <input id="domain" name="domain" class="form-control" placeholder="mastodon.social" type="text" required="" style="width: auto;">
               </div>
@@ -70,6 +56,12 @@
           </fieldset>
         </form>
       </div>
-      </div>
+      <div id="pending-login" style="display: none;">
+        <div class="well well-sm">
+          <p>You are not logged in.</p>
+        </div>
+        <button id="refresh-button" name="refresh-button" class="btn btn-primary">I have logged in</button>
+    </div>
+    </div>
   </body>
 </html>

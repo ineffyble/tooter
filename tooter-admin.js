@@ -21,12 +21,18 @@ function notLoggedIn() {
     document.getElementById('login-form').addEventListener('submit', logIn);
 }
 
+function pendingLogin() {
+    document.getElementById('not-logged-in').style.display = 'none';
+    document.getElementById('pending-login').style.display = 'block';
+    document.getElementById('refresh-button').addEventListener('click', refreshPage);
+}
+
 function errorStatus(text) {
     var html = `<div class="alert alert-danger" role="alert">${text}</div>`;
     document.getElementById('alerts').innerHTML = html;
 }
 
-function logOut() { 
+function logOut() {
     delete tootConfig.access_token;
     chrome.storage.local.set({'settings': tootConfig});
     notLoggedIn();
@@ -40,6 +46,10 @@ function fillForm() {
             form[setting] = tootConfig[setting];
         }
     }
+}
+
+function refreshPage() {
+  location.reload();
 }
 
 function logIn(event) {
@@ -80,37 +90,11 @@ function getCredentials(f) {
     mastodonAppCreate()
     .then(function(response) {
         if (response) {
-            mastodonLogIn(response.client_id, response.client_secret, f.email.value, f.password.value)
-            .then(function(response) {
-                if (response.access_token) {
-                    tootConfig.access_token = response.access_token;
-                    chrome.storage.local.set({'settings': tootConfig});
-                    validCredentials()
-                    .then(function(u) {
-                        if (u.username) {
-                            loggedIn(u.username, tootConfig.domain);
-                        } else {
-                            errorStatus(
-                                'An unexpected error occurred: access token created, but unable to verify credentials.'
-                            );
-                        }
-                    })
-                    .catch(function(error) {
-                        errorStatus(
-                            'An unexpected error occurred: access token created, but unable to verify credentials: ' + error
-                        );
-                    });
-                } else {
-                    errorStatus(
-                        'Unable to verify email or password.'
-                    );
-                }
-            })
-            .catch(function(error) {
-                errorStatus(
-                    'Unable to verify email or password: ' + error
-                );
-            });
+            tootConfig.client_id = response.client_id;
+            tootConfig.client_secret = response.client_secret;
+            chrome.storage.local.set({'settings': tootConfig});
+            pendingLogin();
+            mastodonLogIn(response.client_id, response.client_secret)
         } else {
             errorStatus(
                 'Unable to create a Mastodon app - check your domain settings.'
@@ -142,10 +126,10 @@ chrome.storage.local.get('settings', function(res) {
                 errorStatus(`Unable to login: ${error}.`);
                 notLoggedIn();
                 fillForm();
-            });  
+            });
         } else {
             notLoggedIn();
-            fillForm();      
+            fillForm();
         }
     } else {
         tootConfig = {};
