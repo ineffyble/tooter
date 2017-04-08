@@ -1,6 +1,9 @@
 language: node_js
 node_js:
   - "7"
+before_install:
+  - npm install -g eslint
+  - npm install -g addons-linter
 script:
   - eslint ./
   - addons-linter ./
