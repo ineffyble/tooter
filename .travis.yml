@@ -8,4 +8,7 @@ before_install:
   - npm install -g addons-linter@0.17.0
 script:
   - eslint ./
+  - jq -s add manifest.json.default manifest.json.chrome > manifest.json
+  - addons-linter ./
+  - jq -s add manifest.json.default manifest.json.firefox > manifest.json
   - addons-linter ./
