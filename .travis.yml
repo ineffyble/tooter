@@ -3,7 +3,7 @@ node_js:
   - "7"
 before_install:
   - npm install -g eslint
-  - npm install -g addons-linter
+  - npm install -g addons-linter@0.17.0
 script:
   - eslint ./
   - addons-linter ./
