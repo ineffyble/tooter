@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/ineffyble/tooter#readme",
   "dependencies": {
-    "addons-linter": "^0.18.0",
+    "addons-linter": "~0.17.0",
     "eslint": "^3.19.0"
   }
 }
