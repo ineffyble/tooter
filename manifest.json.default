@@ -36,6 +36,11 @@
     "css/*",
     "img/*",
     "fonts/*"
-  ]
+  ],
+
+  "background": {
+    "scripts": ["tooter-background.js"],
+    "persistent": false
+  }
 
 }
