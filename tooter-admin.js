@@ -1,4 +1,4 @@
-var tootConfig, mastodonRequest, mastodonAppCreate, mastodonLogIn;
+var tootConfig, mastodonRequest, mastodonAppCreate, mastodonLogIn, mastodonGetAccessToken;
 
 function validCredentials() {
     return mastodonRequest('GET', 'accounts/verify_credentials', false)
@@ -114,7 +114,7 @@ function getCredentials(f) {
 function authCallback(callback_url) {
     var code = callback_url.match(/code=([^&]*)/);
     if (code[1]) {
-        var code = code[1];
+        code = code[1];
     } else {
         document.getElementById('status').innerText = 'Error: callback was called without an authoriation code.';
     }

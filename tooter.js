@@ -1,4 +1,4 @@
-var tootConfig;
+var tootConfig, authCallback;
 
 const TOOTAPI = '/api/v1/';
 
@@ -83,8 +83,7 @@ function mastodonLogIn(client_id) {
     chrome.identity.launchWebAuthFlow({
         'url': url,
         'interactive': true
-     }, authCallback);
-    // window.location.href = url;
+    }, authCallback);
 }
 
 function mastodonGetAccessToken(code) {
