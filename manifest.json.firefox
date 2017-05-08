@@ -1,11 +1,5 @@
 {
 
-  "permissions": ["storage", "tabs", "identity", "http://*/", "https://*/"],
-
-  "applications": {
-    "gecko": {
-      "id": "tooter@effy.is"
-    }
-  }
+  "permissions": ["storage", "tabs", "identity", "http://*/", "https://*/"]
 
 }
