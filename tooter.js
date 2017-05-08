@@ -49,13 +49,13 @@ function mastodonRequest(method, endpoint, params) {
 function mastodonAppCreate() {
     var protocol = (tootConfig.secure == 1 ? 'https' : 'http');
     var url = protocol + '://' + tootConfig.domain + TOOTAPI + 'apps';
-    var extension_id = chrome.runtime.id;
+    var redirect_url = chrome.identity.getRedirectURL();
 
     var data = new FormData();
     var params = {
         'client_name': 'Tooter',
         'website': 'https://github.com/ineffyble/tooter',
-        'redirect_uris': 'chrome-extension://' + extension_id + '/tooter-callback.html',
+        'redirect_uris': redirect_url,
         'scopes': 'read write'
     };
     for (var p in params) {
@@ -76,17 +76,21 @@ function mastodonAppCreate() {
 
 function mastodonLogIn(client_id) {
     var protocol = (tootConfig.secure == 1 ? 'https' : 'http');
-    var extension_id = chrome.runtime.id;
-    var callback_url = encodeURI(`chrome-extension://${extension_id}/tooter-callback.html`);
-    var url = `${protocol}://${tootConfig.domain}/oauth/authorize?client_id=${client_id}&redirect_uri=${callback_url}&response_type=code&scope=read+write`;
+    var redirect_url = chrome.identity.getRedirectURL();
 
-    window.location.href = url;
+    var url = `${protocol}://${tootConfig.domain}/oauth/authorize?client_id=${client_id}&redirect_uri=${redirect_url}&response_type=code&scope=read+write`;
+
+    chrome.identity.launchWebAuthFlow({
+        'url': url,
+        'interactive': true
+     }, authCallback);
+    // window.location.href = url;
 }
 
 function mastodonGetAccessToken(code) {
     var protocol = (tootConfig.secure == 1 ? 'https' : 'http');
     var url = protocol + '://' + tootConfig.domain + '/oauth/token';
-    var extension_id = chrome.runtime.id;
+    var redirect_url = chrome.identity.getRedirectURL();
 
     var data = new FormData();
     var params = {
@@ -95,7 +99,7 @@ function mastodonGetAccessToken(code) {
         'code': code,
         'grant_type': 'authorization_code',
         'scope': 'read write',
-        'redirect_uri': 'chrome-extension://' + extension_id + '/tooter-callback.html',
+        'redirect_uri': redirect_url
     };
     for (var p in params) {
         data.append(p, params[p]);

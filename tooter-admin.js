@@ -13,6 +13,7 @@ function loggedIn(username, domain) {
     document.getElementById('logout-button').addEventListener('click', logOut);
     document.getElementById('not-logged-in').style.display = 'none';
     document.getElementById('logged-in').style.display = 'block';
+    document.getElementById('pending-login').style.display = 'none';
 }
 
 function notLoggedIn() {
@@ -106,6 +107,42 @@ function getCredentials(f) {
     .catch(function(error) {
         errorStatus(
             'Unable to create a Mastodon app: ' + error
+        );
+    });
+}
+
+function authCallback(callback_url) {
+    var code = callback_url.match(/code=([^&]*)/);
+    if (code[1]) {
+        var code = code[1];
+    } else {
+        document.getElementById('status').innerText = 'Error: callback was called without an authoriation code.';
+    }
+    mastodonGetAccessToken(code)
+    .then(function(response) {
+        if (response.access_token) {
+            tootConfig.access_token = response.access_token;
+            chrome.storage.local.set({'settings': tootConfig});
+            validCredentials()
+            .then(function(u) {
+                if (u.username) {
+                    loggedIn(u.username, tootConfig.domain);
+                } else {
+                    errorStatus(
+                        'An unexpected error occurred: access token created, but unable to verify credentials.'
+                    );
+                }
+            })
+            .catch(function(error) {
+                errorStatus(
+                    'An unexpected error occurred: access token created, but unable to verify credentials: ' + error
+                );
+            });
+        }
+    })
+    .catch(function(error) {
+        errorStatus(
+        'Unable to verify email or password: ' + error
         );
     });
 }

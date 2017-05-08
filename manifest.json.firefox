@@ -1,6 +1,6 @@
 {
 
-  "permissions": ["storage", "tabs", "http://*/", "https://*/"],
+  "permissions": ["storage", "tabs", "identity", "http://*/", "https://*/"],
 
   "applications": {
     "gecko": {
