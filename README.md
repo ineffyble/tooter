@@ -5,13 +5,17 @@
 Tooter is a browser extension that lets you easily share content to Mastodon, by adding 'toot' buttons and options on various sharing sites and services.
 
 ## Install
+
+### Google Chrome(ium)
 [Google Chrome Web Store](https://chrome.google.com/webstore/detail/okmlpjijminjkikninbkcnfmhkofgnnk)
 
 or
 
 Merge the manifest.json.chrome to manifest.json.default and rename it to manifest.json, and import the unpacked extension directly at <chrome://extensions/>
 
-Mozilla Firefox Add-on _coming soon..._
+### Mozilla Firefox
+
+[Firefox Add-on](https://addons.mozilla.org/en-US/firefox/addon/tooter/)
 
 ## Supported services
 
