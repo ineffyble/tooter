@@ -171,14 +171,14 @@ function addIntentButtonStyle() {
     }
 
     .button.toot.selected.is-disabled {
-        color: #8e95ad;
+        color: #1DA1F2;
     }
 
     .button.tweettoot.selected {
         height: 40px;
         border: transparent;
         border-right: 1px solid #454b5e;
-        background: linear-gradient(90deg, #55acee 0%, #55acee 50%, #454b5e 50%, #454b5e 100%);
+        background: linear-gradient(90deg, #1DA1F2 0%, #1DA1F2 50%, #454b5e 50%, #454b5e 100%);
         font-family: Roboto-Medium, sans-serif;
     }`;
     document.head.appendChild(style);
