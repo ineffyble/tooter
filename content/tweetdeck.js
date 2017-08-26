@@ -194,7 +194,8 @@ function newIntentButton(classes, label) {
 
 function getTootText() {
     var tootText = tootTextArea.value;
-    if (quotedTweet = document.querySelector('.js-quote-tweet-holder .quoted-tweet')) {
+    var quotedTweet = document.querySelector('.js-quote-tweet-holder .quoted-tweet');
+    if (quotedTweet) {
         var accountLink = quotedTweet.querySelector('a.account-link').href;
         var tweetId = quotedTweet.dataset.tweetId;
         var tweetLink = accountLink + '/status/' + tweetId;
