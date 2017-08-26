@@ -100,7 +100,7 @@ function tootClicked(event) {
     event.preventDefault();
     if(tootButton.classList.contains('is-disabled')) return;
 
-    var tootText = tootTextArea.value;
+    var tootText = getTootText();
     mastodonPost(tootText)
         .then(function(t) {
             if (t.url) {
@@ -127,7 +127,7 @@ function tweetTootClicked(event) {
     event.preventDefault();
     if(tweetTootButton.classList.contains('is-disabled')) return;
 
-    var tootText = tootTextArea.value;
+    var tootText = getTootText();
     mastodonPost(tootText)
         .then(function(t) {
             if (t.url) {
@@ -190,4 +190,15 @@ function newIntentButton(classes, label) {
     newButton.setAttribute('type', 'submit');
     newButton.setAttribute('value', label);
     return newButton;
+}
+
+function getTootText() {
+    var tootText = tootTextArea.value;
+    if (quotedTweet = document.querySelector('.js-quote-tweet-holder .quoted-tweet')) {
+        var accountLink = quotedTweet.querySelector('a.account-link').href;
+        var tweetId = quotedTweet.dataset.tweetId;
+        var tweetLink = accountLink + '/status/' + tweetId;
+        tootText = tootText + ' ' + tweetLink;
+    }
+    return tootText;
 }
