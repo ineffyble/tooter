@@ -2,7 +2,7 @@
 
   "manifest_version": 2,
   "name": "Tooter",
-  "version": "0.28",
+  "version": "0.29",
   "description": "Add 'Toot' and 'Share to Mastodon' buttons to the web",
 
   "icons": {
