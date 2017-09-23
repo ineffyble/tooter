@@ -1,6 +1,6 @@
 var tootConfig, authCallback;
 
-const TOOTAPI = '/api/v1/';
+var TOOTAPI = '/api/v1/';
 
 function mastodonFetch(request) {
 
