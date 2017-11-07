@@ -1,6 +1,6 @@
 var tootConfig, mastodonPost;
 
-var submitContainer, tootTextArea, tootContainer, tootButton, tweetTootButton, tweetButton, tootCharacterCounter;
+var submitContainer, composeContainer, tootTextArea, tootButton, tweetTootButton, tweetButton, tootCharacterCounter;
 
 chrome.storage.local.get('settings', function(res) {
     tootConfig = res.settings;
@@ -32,30 +32,31 @@ chrome.storage.local.get('settings', function(res) {
 });
 
 function setup() {
-    // Resize the character counter to put Tweet and Toot on the same line
-    var tweetCharacterCount = submitContainer.querySelector('.character-count-compose');
-    tweetCharacterCount.style.width = '40px';
+    composeContainer = document.querySelector('.compose-text-container');
 
     // Is used to to check if we can use Tweet+Toot
     tweetButton = submitContainer.querySelector('div:nth-child(1) > div > button');
 
     // Add a container under the Tweet/Tweet and Toot to add the Toot button
-    tootContainer = document.createElement('div');
-    tootContainer.setAttribute('class', 'pull-right margin-t--8');
-    submitContainer.appendChild(tootContainer);
+    // tootContainer = document.createElement('div');
+    // tootContainer.setAttribute('class', 'pull-right margin-t--8');
+    // submitContainer.appendChild(tootContainer);
 
-    var tootCharacterCounter = document.createElement('input');
-    tootCharacterCounter.setAttribute('class', 'js-character-count character-count-compose margin-rl');
-    tootCharacterCounter.setAttribute('disabled', '');
-    tootCharacterCounter.value = 500;
-    tootContainer.appendChild(tootCharacterCounter);
+    var tootCharacterCounterContainer = document.createElement('div');
+    tootCharacterCounterContainer.setAttribute('class', 'txt-right height--16 margin-t--4  margin-r---3 margin-b--1txt-right height--16 margin-t--4  margin-r---3 margin-b--1');
+    composeContainer.appendChild(tootCharacterCounterContainer);
+
+    var tootCharacterCounter = document.createElement('span');
+    tootCharacterCounter.setAttribute('class', 'js-character-count txt-size--12 txt-twitter-dark-gray bg-transparent no-border txt-line-height--20 margin-r--6');
+    tootCharacterCounter.textContent = '500';
+    tootCharacterCounterContainer.appendChild(tootCharacterCounter);
 
     addToIntentForm();
 
     // Observe the textArea to disable or enable the buttons
     tootTextArea.addEventListener('input', function() {
-        tootCharacterCounter.value = 500 - tootTextArea.value.length;
-        if(tootCharacterCounter.value < 0) {
+        tootCharacterCounter.textContent = 500 - tootTextArea.value.length;
+        if(tootCharacterCounter.textContent < 0) {
             if(!tootCharacterCounter.classList.contains('invalid-char-count'))
                 tootCharacterCounter.classList.add('invalid-char-count');
         } else {
@@ -150,7 +151,7 @@ function tweetTootClicked(event) {
 function addToIntentForm() {
     addIntentButtonStyle();
     tootButton = newIntentButton('toot btn btn-positive btn-extra-height is-disabled', 'Toot');
-    tootContainer.appendChild(tootButton);
+    submitContainer.querySelector('div:nth-child(1)').appendChild(tootButton);
     tootButton.addEventListener('click', tootClicked);
 
     tweetTootButton = newIntentButton('tweettoot btn btn-positive btn-extra-height is-disabled', 'Tweet and Toot');
