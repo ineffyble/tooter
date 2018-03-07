@@ -4,13 +4,11 @@ node_js:
 before_install:
 - stty cols 120
 - export COLUMNS=120
-- npm install -g eslint
-- npm install -g addons-linter@0.17.0
 - npm install -g chrome-webstore-upload-cli
 script:
-- eslint ./
 - jq -s add manifest.json.default manifest.json.firefox > manifest.json
-- addons-linter ./
+- yarn run lint:eslint
+- yarn run lint:addons
 deploy:
   provider: script
   script: jq -s add manifest.json.default manifest.json.chrome > manifest.json && webstore upload --auto-publish --extension-id=okmlpjijminjkikninbkcnfmhkofgnnk
