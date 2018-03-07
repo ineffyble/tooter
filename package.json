@@ -16,7 +16,9 @@
   },
   "scripts": {
     "lint:eslint": "eslint src/",
-    "lint:addons": "addons-linter src/"
+    "lint:addons": "addons-linter src/",
+    "manifest:firefox": "jq -s add src/manifest.json.default src/manifest.json.firefox > src/manifest.json",
+    "manifest:chrome": "jq -s add src/manifest.json.default src/manifest.json.chrome > src/manifest.json"
   },
   "license": "MIT"
 }
