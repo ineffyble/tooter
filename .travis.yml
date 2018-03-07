@@ -5,7 +5,7 @@ before_install:
 - stty cols 120
 - export COLUMNS=120
 script:
-- jq -s add manifest.json.default manifest.json.firefox > manifest.json
+- yarn run manifest:firefox
 - yarn run lint:eslint
 - yarn run lint:addons
 deploy:
