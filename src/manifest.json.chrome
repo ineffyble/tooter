@@ -1,0 +1,10 @@
+{
+
+  "permissions": ["storage", "tabs", "identity"],
+
+  "optional_permissions": [
+    "http://*/",
+    "https://*/"
+  ]
+
+}

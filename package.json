@@ -1,0 +1,22 @@
+{
+  "name": "tooter",
+  "description": "Add 'Toot' and 'Share to Mastodon' buttons to the web",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ineffyble/tooter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ineffyble/tooter/issues"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "addons-linter": "^0.37.0",
+    "chrome-webstore-upload-cli": "^1.1.1",
+    "eslint": "^4.18.2"
+  },
+  "scripts": {
+    "lint:eslint": "eslint src/",
+    "lint:addons": "addons-linter src/"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,46 @@
+{
+
+  "manifest_version": 2,
+  "name": "Tooter",
+  "version": "0.31",
+  "description": "Add 'Toot' and 'Share to Mastodon' buttons to the web",
+
+  "icons": {
+    "16": "img/mastodon16.png",
+    "48": "img/mastodon48.png",
+    "128": "img/mastodon128.png"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["*://*.twitter.com/*"],
+      "js": ["tooter.js", "content/twitter.js"],
+      "run_at": "document_end",
+      "all_frames": true
+    },
+    {
+        "matches": ["*://tweetdeck.twitter.com/*"],
+        "js": ["tooter.js", "content/tweetdeck.js"],
+        "run_at": "document_end",
+        "all_frames": true
+    }
+  ],
+
+  "options_ui": {
+    "page": "tooter-admin.html"
+  },
+
+  "web_accessible_resources": [
+    "tooter-callback.js",
+    "tooter-callback.html",
+    "css/*",
+    "img/*",
+    "fonts/*"
+  ],
+
+  "background": {
+    "scripts": ["tooter-background.js"],
+    "persistent": false
+  }
+
+}
