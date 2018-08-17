@@ -7,9 +7,11 @@ function validCredentials() {
         });
 }
 
-function loggedIn(username, domain) {
+function loggedIn(username, domain, vis) {
     document.getElementById('username').innerText = username;
     document.getElementById('domain').innerText = domain;
+    document.getElementById('vis').innerText = vis;
+    document.getElementById('vis-form').addEventListener('submit', setVis);
     document.getElementById('logout-button').addEventListener('click', logOut);
     document.getElementById('not-logged-in').style.display = 'none';
     document.getElementById('logged-in').style.display = 'block';
@@ -33,6 +35,28 @@ function errorStatus(text) {
     alert.className = 'alert alert-danger';
     alert.innerText = text;
     document.getElementById('alerts').appendChild(alert);
+}
+
+function setVis(event) {
+    event.preventDefault();
+
+    var f = this;
+
+    tootConfig.visibility = f.visibility.value;
+    chrome.storage.local.set({'settings': tootConfig});
+    chrome.storage.local.get('settings', function(res) {
+    tootConfig = res.settings;
+    validCredentials()
+    .then(function(u) {
+        if (u.username) {
+            loggedIn(u.username, tootConfig.domain, tootConfig.visibility);
+        } else {
+            errorStatus(
+                'An unexpected error occurred: access token created, but unable to verify credentials.'
+            );
+        }
+    })
+    });
 }
 
 function logOut() {
@@ -122,11 +146,12 @@ function authCallback(callback_url) {
     .then(function(response) {
         if (response.access_token) {
             tootConfig.access_token = response.access_token;
+            tootConfig.visibility = 'public';
             chrome.storage.local.set({'settings': tootConfig});
             validCredentials()
             .then(function(u) {
                 if (u.username) {
-                    loggedIn(u.username, tootConfig.domain);
+                    loggedIn(u.username, tootConfig.domain, tootConfig.visibility);
                 } else {
                     errorStatus(
                         'An unexpected error occurred: access token created, but unable to verify credentials.'
@@ -154,7 +179,7 @@ chrome.storage.local.get('settings', function(res) {
             validCredentials()
             .then(function(u) {
                 if (u.username) {
-                    loggedIn(u.username, tootConfig.domain);
+                    loggedIn(u.username, tootConfig.domain, tootConfig.visibility);
                 } else {
                     errorStatus('Unable to login with saved details.');
                     notLoggedIn();
