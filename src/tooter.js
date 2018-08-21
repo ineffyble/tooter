@@ -128,7 +128,7 @@ function mastodonValidateCredentials() {
 }
 
 function mastodonPost(text) {
-    return mastodonRequest('POST', 'statuses', {'status': text})
+    return mastodonRequest('POST', 'statuses', {'status': text, 'visibility': tootConfig.visibility})
         .then(function(re) {
             return re;
         });
