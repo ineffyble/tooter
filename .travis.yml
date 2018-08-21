@@ -10,7 +10,7 @@ script:
 - yarn run lint:addons
 deploy:
   provider: script
-  script: yarn install && cd src && jq -s add manifest.json.default manifest.json.chrome > manifest.json && webstore upload --auto-publish --extension-id=okmlpjijminjkikninbkcnfmhkofgnnk
+  script: yarn install --dev && cd src && jq -s add manifest.json.default manifest.json.chrome > manifest.json && yarn run webstore upload --auto-publish --extension-id=okmlpjijminjkikninbkcnfmhkofgnnk
   on:
     branch: master
     tags: true
