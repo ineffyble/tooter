@@ -14,6 +14,7 @@ deploy:
   on:
     branch: master
     tags: true
+  skip_cleanup: true
 env:
   global:
   - secure: NX7Aa/44LWzNqEbK8kTCa6tkNpQCc1GYv9k31WsJd7k4fhy+6w+vCzf1t5lx5zxm8406n1IZVzP+FfxZXDBI+t9F3DkJ4cQQN4bpaQ8brn4A2DSpDsrrttXbHUF0QRgME45eK5fcJALryLsS9CdHerQI91Jt69crD6ELzgQi7YMRfa5Bj5S2wKg8G8dgAobmJKY/UtKMDEMYjddQL980c9yCqzbzQgVcTMrEXvDj4OJGHECJxkr0Rnyg26Jt1MPAChPIHeTEySB/ZzyZ4/ibyfpfCCDdhRFulfPYgnujKkQzeqeFTARGfZ+gXaXzMTOs1LvDW2PPqjEolCX0EG6gMz53WB+58c75krtS9Hs/QmX3MHGaKZVkYWbp5Ga7I8ydRFEXsC+LUK++qR1nhR7QZ8+O7cPJ5IIqspVZ8+bh2EjLD+fsV4tmbsdjKHnYPMLzuIWQ+wEYyczO0sjvpIWGJzlVRZVVTa39j6hsy/ALvm6SU9YvAoWsd9gbouGunp/yJZyFRMSPjmSMsya0QFJULoQ07+wSLzQZ+g/Fu9Om5bKGRDs/Edog3cyHEFIWsV9mWDDLzPNbrAEltQk+LBVPWX0Rq6hJswGVUbdTFHwghY/mOkpXQr8uY3jQpj4ND/3gCWskltEmTMDheDxxY2GKQIgewWqeAycyxfN21aNUIcg=
