@@ -1,5 +1,7 @@
 # Tooter
 
+### ABANDONED: Due to a combination of changes in Rails & Rack-CORS that were integrated in Mastodon 2.3, it is impossible for Tooter to work correctly as a standalone client. Due to this, I have made the decision to abandon development of Tooter, and unpublish the extension from the app stores.
+
 ![Tooter Logo](https://cloud.githubusercontent.com/assets/834880/21775075/d66693be-d6e8-11e6-869e-a5392d60091d.png)
 
 Tooter is a browser extension that lets you easily share content to Mastodon, by adding 'toot' buttons and options on various sharing sites and services.
